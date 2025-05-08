@@ -1,0 +1,22 @@
+name: Test Cloudsmith Download
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create download directory
+        run: mkdir -p downloads
+
+      - name: Download file from Cloudsmith
+        working-directory: downloads
+        run: |
+          set -euo pipefail
+          echo "Downloading 0_Mountains_Valley_3840x2160.mov ..."
+          curl -1sLf -O 'https://dl.cloudsmith.io/pErRvCX9YQ7gA6Q7/workspace-for-rajdeep/new1/raw/files/0_Mountains_Valley_3840x2160.mov'
+
+      - name: List downloaded files
+        run: ls -lh downloads
